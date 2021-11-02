@@ -59,16 +59,7 @@
           <ul class="flex flex-wrap mb-4">
             <li class="flex-auto text-center">
               <a
-                class="
-                  block
-                  rounded
-                  py-3
-                  px-4
-                  transition
-                  hover:text-white
-                  text-white
-                  bg-blue-600
-                "
+                class="block rounded py-3 px-4 transition"
                 href="#"
                 @click.prevent="tab = 'login'"
                 :class="{
@@ -85,7 +76,7 @@
                 @click.prevent="tab = 'register'"
                 :class="{
                   'hover:text-white text-white bg-blue-600': tab === 'register',
-                  'hover:text-blue-600': tab === 'login',
+                  'hover:text-blue -600': tab === 'login',
                 }"
                 >Register</a
               >
