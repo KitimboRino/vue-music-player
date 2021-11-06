@@ -143,11 +143,11 @@
             </button>
           </form>
           <!-- Registration Form -->
-          <VeeForm v-show="tab === 'register'" :valdation-schema="schema">
+          <vee-form v-show="tab === 'register'" :valdation-schema="schema">
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
-              <VeeField
+              <vee-field
                 name="name"
                 type="text"
                 class="
@@ -170,7 +170,7 @@
             <!-- Email -->
             <div class="mb-3">
               <label class="inline-block mb-2">Email</label>
-              <VeeField
+              <vee-field
                 name="email"
                 type="email"
                 class="
@@ -187,11 +187,13 @@
                 "
                 placeholder="Enter Email"
               />
+              <ErrorMessage class="text-red-600" name="email" />
             </div>
+
             <!-- Age -->
             <div class="mb-3">
               <label class="inline-block mb-2">Age</label>
-              <VeeField
+              <vee-field
                 name="age"
                 type="number"
                 class="
@@ -207,11 +209,13 @@
                   rounded
                 "
               />
+              <ErrorMessage class="text-red-600" name="age" />
             </div>
+
             <!-- Password -->
             <div class="mb-3">
               <label class="inline-block mb-2">Password</label>
-              <VeeField
+              <vee-field
                 name="password"
                 type="password"
                 class="
@@ -228,12 +232,14 @@
                 "
                 placeholder="Password"
               />
+              <ErrorMessage class="text-red-600" name="password" />
             </div>
+
             <!-- Confirm Password -->
             <div class="mb-3">
               <label class="inline-block mb-2">Confirm Password</label>
-              <VeeField
-                name="password_confirmation"
+              <vee-field
+                name="confirm_password"
                 type="password"
                 class="
                   block
@@ -249,11 +255,15 @@
                 "
                 placeholder="Confirm Password"
               />
+              <ErrorMessage class="text-red-600" name="confirm_password" />
             </div>
+
             <!-- Country -->
             <div class="mb-3">
               <label class="inline-block mb-2">Country</label>
-              <select
+              <vee-field
+                as="select"
+                name="country"
                 class="
                   block
                   w-full
@@ -270,15 +280,21 @@
                 <option value="USA">USA</option>
                 <option value="Mexico">Mexico</option>
                 <option value="Germany">Germany</option>
-              </select>
+                <option value="Antarctica">Antarctica</option>
+              </vee-field>
+              <ErrorMessage class="text-red-600" name="country" />
             </div>
+
             <!-- TOS -->
             <div class="mb-3 pl-6">
-              <input
+              <vee-field
+                name="tos"
+                value="1"
                 type="checkbox"
                 class="w-4 h-4 float-left -ml-6 mt-1 rounded"
               />
               <label class="inline-block">Accept terms of service</label>
+              <ErrorMessage class="text-red-600" name="tos" />
             </div>
             <button
               type="submit"
@@ -296,7 +312,7 @@
             >
               Submit
             </button>
-          </VeeForm>
+          </vee-form>
         </div>
       </div>
     </div>
@@ -312,32 +328,13 @@ export default {
     return {
       tab: "login",
       schema: {
-        name: {
-          required: true,
-          // min: 3,
-          // max: 20,
-        },
-        email: {
-          required: true,
-          // type: "email",
-        },
-        age: {
-          required: true,
-          // type: "number",
-          // min: 18,
-          // max: 99,
-        },
-        password: {
-          required: true,
-          // min: 6,
-          // max: 20,
-        },
-        password_confirmation: {
-          required: true,
-          // min: 6,
-          // max: 20,
-          // sameAs: "password",
-        },
+        name: "required|min:3|max:100|alpha_spaces",
+        email: "required|min:3|max:100|email",
+        age: "required|min_value:18|max_value:100",
+        password: "required|min:3|max:100|",
+        confirm_password: "confirmed:@password",
+        country: "required|excluded:Antarctica",
+        tos: "required",
       },
     };
   },
