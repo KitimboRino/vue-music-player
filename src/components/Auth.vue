@@ -143,11 +143,12 @@
             </button>
           </form>
           <!-- Registration Form -->
-          <form v-show="tab === 'register'">
+          <VeeForm v-show="tab === 'register'" :valdation-schema="schema">
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
-              <input
+              <VeeField
+                name="name"
                 type="text"
                 class="
                   block
@@ -163,11 +164,14 @@
                 "
                 placeholder="Enter Name"
               />
+              <ErrorMessage class="text-red-600" name="name" />
             </div>
+
             <!-- Email -->
             <div class="mb-3">
               <label class="inline-block mb-2">Email</label>
-              <input
+              <VeeField
+                name="email"
                 type="email"
                 class="
                   block
@@ -187,7 +191,8 @@
             <!-- Age -->
             <div class="mb-3">
               <label class="inline-block mb-2">Age</label>
-              <input
+              <VeeField
+                name="age"
                 type="number"
                 class="
                   block
@@ -206,7 +211,8 @@
             <!-- Password -->
             <div class="mb-3">
               <label class="inline-block mb-2">Password</label>
-              <input
+              <VeeField
+                name="password"
                 type="password"
                 class="
                   block
@@ -226,7 +232,8 @@
             <!-- Confirm Password -->
             <div class="mb-3">
               <label class="inline-block mb-2">Confirm Password</label>
-              <input
+              <VeeField
+                name="password_confirmation"
                 type="password"
                 class="
                   block
@@ -289,7 +296,7 @@
             >
               Submit
             </button>
-          </form>
+          </VeeForm>
         </div>
       </div>
     </div>
@@ -304,6 +311,34 @@ export default {
   data() {
     return {
       tab: "login",
+      schema: {
+        name: {
+          required: true,
+          // min: 3,
+          // max: 20,
+        },
+        email: {
+          required: true,
+          // type: "email",
+        },
+        age: {
+          required: true,
+          // type: "number",
+          // min: 18,
+          // max: 99,
+        },
+        password: {
+          required: true,
+          // min: 6,
+          // max: 20,
+        },
+        password_confirmation: {
+          required: true,
+          // min: 6,
+          // max: 20,
+          // sameAs: "password",
+        },
+      },
     };
   },
   computed: {
